@@ -3,6 +3,9 @@
 #include <vector>
 using namespace std;
 
+//find number of distinct strings you can write using only N pairs of balanced parenthesis
+
+
 vector<string> repeat;
 
 void func(int n, string ans){
