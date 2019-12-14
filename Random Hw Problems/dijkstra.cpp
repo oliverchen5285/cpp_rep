@@ -11,6 +11,10 @@ struct highway{
   int time;
 };
 
+bool operator<(const pushin &x, const pushin &y){
+  return nodetime[x-1] < nodetime[y-1];
+}
+
 int main()
 {
   int n;
@@ -33,7 +37,7 @@ int main()
   bool contain;
   
   while(!pqueue.empty()){
-    cur = n - pqueue.top();
+    cur = pqueue.top();
     cout << "cur " << cur << endl;
     pqueue.pop();
     visited.insert(cur);
@@ -44,7 +48,7 @@ int main()
           cout << " - " << nodes[i].end << " -> " << nodetime[nodes[i].end-1] << endl;
         }
         if(!visited.count(nodes[i].end)){
-          pqueue.push(n - nodes[i].end);
+          pqueue.push(nodes[i].end);
           cout << " - " << "pushed " << nodes[i].end << endl;
         }
       }
