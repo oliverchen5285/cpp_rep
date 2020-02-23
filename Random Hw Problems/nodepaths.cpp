@@ -38,7 +38,7 @@ vector<int> findend(vector<edge> edges, vector<int> visited, int key){
   return ans;
 }
 
-int dfs(vector<edge> edges, int cur, int dest, int visited[], int path){
+int dfs(vector<edge> edges, int cur, int dest, vector<int> visited, int path){
   visited.push_back(cur);
   vector<int> ans = findend(edges, visited, cur);
   for(int i = 0; i < ans.size(); ++i){
@@ -46,7 +46,9 @@ int dfs(vector<edge> edges, int cur, int dest, int visited[], int path){
       ++path;
     }
     else{
+      visited.push_back(ans[i]);
       path = dfs(edges, ans[i], dest, visited, path);
+      visited.pop_back();
       
     }
   }
@@ -104,7 +106,9 @@ int main(){
     }
     
   }
+  vector<int> tempvisited;
   cout << paths << endl;
+  cout << dfs(edges, 0, endnode, tempvisited, 0) << endl;
   
   
 }
