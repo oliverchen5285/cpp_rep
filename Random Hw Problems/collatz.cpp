@@ -31,37 +31,18 @@ vector<pair<int, int> > make_pow_two(){
 }
 
 
-int findsteps(int x, int steps){
-  cout << x << ", " << steps << endl;
-  int ans;
-  if(x == 1){
-    return steps;
-  }
-  
-  else if(x % 2 == 0){
-    if(memo.find(x/2) != memo.end()){
-      return memo[x/2];
-    }
-    else{
-      int ans = findsteps(x/2, steps + 1);
+int findsteps(int x){
+  if(memo.find(x) == memo.end()){
+      int next = (x%2 == 0) ? x/2 : x*3 + 1;
+      int ans = findsteps(next) + 1;
       memo.insert(pair<int, int>(x, ans));
-      return memo[x/2];
-    }
   }
-  else{
-    if(memo.find(x*3 + 1) != memo.end()){
-      return memo[x*3 + 1];
-    }
-    else{
-      int ans = findsteps(x*3 + 1, steps + 1);
-      memo.insert(pair<int, int>(x, ans));
-      return memo[x*3 + 1];
-    }
-  }
+  return memo[x];
 }
 
 
 int main(){
+  memo[1] = 0;
   int n;
   cin >> n;
 
@@ -89,9 +70,17 @@ int main(){
   
 
   //memo
-  //does memo even do anything? I don't think any numbers are repeated during the sequence so :/
-  cout << n << ": " << findsteps(n, 0) << endl;
- 
+  for(int i = 1; i <= n; ++i){
+    cout << i << ": " << findsteps(i) << endl;
+  }
+  for(const pair<int, int> &kv : memo){
+    cout << kv.first << " " << kv.second << endl;
+  }
+
+
+
+
+
   //dp 
   /*
   don't know how I would implement dp, because I don't know how the structure of the table would look like
