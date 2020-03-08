@@ -31,7 +31,7 @@ int main(){
   
   //# of paths from node 0 to dptable[x][y]
   //measured by nodenum and steps
-  int dptable[nodenum][edgenum];
+  int dptable[edgenum][nodenum];
 
   
   
