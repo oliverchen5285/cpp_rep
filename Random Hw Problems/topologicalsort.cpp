@@ -89,7 +89,7 @@ int main(){
 
   while(!nodequeue.empty()){
 
-    curnode = nodequeue.front();
+    curnode = nodequeue.top();
     nodequeue.pop();
 
     //cout << "curnode: " << curnode << endl;
