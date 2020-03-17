@@ -60,21 +60,19 @@ int main(){
         ++ToNodeCount[edgevec[i].second];
     }
   }
-  /*
   cout << "debug: map" << endl;
   for(auto elem : ToNodeCount){
     cout << elem.first << ", " << elem.second << endl;
   }
   cout << endl;
-  */
 
   //pqueue just lets you sort same-level nodes 
-  //queue<int> nodequeue;
-  priority_queue<int> nodequeue;
+  queue<int> nodequeue;
+  //priority_queue<int> nodequeue;
 
   for(auto &elem : ToNodeCount){
     if(elem.second == 0){
-        //cout << "added " << elem.first << endl;
+        cout << "added " << elem.first << endl;
         nodequeue.push(elem.first);
         elem.second = -10;
     }
@@ -89,10 +87,10 @@ int main(){
 
   while(!nodequeue.empty()){
 
-    curnode = nodequeue.top();
+    curnode = nodequeue.front();
     nodequeue.pop();
 
-    //cout << "curnode: " << curnode << endl;
+    cout << "curnode: " << curnode << endl;
 
     ansorder.push_back(curnode);
 
@@ -101,35 +99,36 @@ int main(){
             ToNodeCount[edgevec[i].second] -= 1;
         }
     }
-    /*
     cout << "debug: map" << endl;
     for(auto elem : ToNodeCount){
         cout << elem.first << ", " << elem.second << endl;
     }
     cout << endl;
-    */
 
 
     for(auto &elem : ToNodeCount){
         if(elem.second == 0){
-            //cout << "added " << elem.first << endl;
+            cout << "added " << elem.first << endl;
             nodequeue.push(elem.first);
             elem.second = -10;
         }
     }
 
-    /*
     cout << "debug: map" << endl;
     for(auto elem : ToNodeCount){
         cout << elem.first << ", " << elem.second << endl;
     }
     cout << endl;
-    */
+
   }
 
   for(auto i : ansorder){
     cout << i << " ";
   }
   cout << endl;
+
+
+
+
 }
 
