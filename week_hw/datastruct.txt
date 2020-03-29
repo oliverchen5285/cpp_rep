@@ -1,0 +1,20 @@
+map, set
+	Use map to index a value with key and sort keys
+	Use set to remove duplicates and sort items
+		Allows multiple sets to be compared because different permutations do not exist
+unordered_map, unordered_set
+	Use map to index a value with key 
+	Use set to remove duplicates
+vector
+	Mutable array
+	Used when size (number of elements) is unknown or will change in program
+deque
+	Queue with operations on front and ends
+	Use when you need first-in-first-out
+	priority_queue
+		Use when you need to sort objects in queue		
+pair
+	STL class (predefined comparing)
+	Use when you need an object that associates two (or more (tuple) values)
+
+
