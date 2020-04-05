@@ -8,18 +8,22 @@
 #include <map>
 using namespace std;
 
-/*
-int move(int stoneindex, int maxmoves, vector<int> &winloss){
-  //2 = undecided, 1 = win, 0 = loss (if start turn with stonenum)
-  bool win = false;
-  for(int i = stoneindex; i >= stoneindex - maxmoves; --i){
-    if(winloss[stoneindex] == 0){
-      win = true;
+
+int move(int stoneindex, int maxmoves){
+  if(stoneindex == 0){
+    return 0;
+  }
+  if(stoneindex <= maxmoves && stoneindex > 0){
+    return stoneindex;
+  }
+  for(int i = 1; i <= maxmoves; ++i){
+    if(move(stoneindex - i, maxmoves) == 0){
+      return i;
     }
   }
-  
+  return 0;
 }
-*/
+
 
 int move2(int stoneindex, int maxmoves){
   vector<bool> winloss2(stoneindex + 1, false);
@@ -33,6 +37,7 @@ int move2(int stoneindex, int maxmoves){
       }
     }
   }
+  /*
   for(int i = 0; i < winloss2.size(); ++i){
     if(winloss2[i] == false){
       cout << 0;
@@ -42,6 +47,7 @@ int move2(int stoneindex, int maxmoves){
     }
   }
   cout << endl;
+  */
   if(winloss2[stoneindex] == true){
     for(int i = stoneindex; i >= stoneindex - maxmoves; --i){
       if(winloss2[i] == false){
@@ -50,7 +56,7 @@ int move2(int stoneindex, int maxmoves){
     }
   }
   
-  return maxmoves;
+  return 0;
   
 }
 /*
@@ -61,9 +67,15 @@ bool play(int stonenum, int maxmoves){
 */
 
 int main(){
+  cout << "move1" << endl;
   for(int i = 1; i < 11; ++i){
-    cout << i << ": " <<  move2(i, 3) << endl;
+    cout << i << ": " << move(i, 3) << endl;
   }
+  cout << endl << "move2" << endl;
+  for(int i = 1; i < 11; ++i){
+    cout << i << ": " << move2(i, 3) << endl;
+  }
+  
 }
 
 //function getstonesleft() returns how many stones, function makemove() returns take how many stones
