@@ -59,12 +59,45 @@ int move2(int stoneindex, int maxmoves){
   return 0;
   
 }
-/*
+
 bool play(int stonenum, int maxmoves){
   //returns true if player 1 wins, false if player 2 wins
-  
+  int mode;
+  cout << "Double player(2), single player(1), computer v. computer(0)" << endl;
+  cin >> mode;
+  cout << "Stones remaining: " << stonenum << endl;
+  while (true){
+    int ans;
+    if(mode == 2 || mode == 1){
+      cout << "Player 1: "<< endl;
+      cin >> ans;
+    }
+    else{
+      ans = move2(stonenum, maxmoves);
+    }
+    stonenum -= ans;
+    cout << "Player 1 took " << ans << endl;
+    cout << "Stones remaining: " << stonenum << endl;
+    if(stonenum <= 0){
+      return true;
+    }
+    cout << endl;
+    if(mode == 2){
+      cout << "Player 2: " << endl;
+      cin >> ans;
+    }
+    else{
+      ans = move2(stonenum, maxmoves);
+    }
+    stonenum -= ans;
+    cout << "Player 2 took " << ans << endl;
+    cout << "Stones remaining: " << stonenum << endl;
+    if(stonenum <= 0){
+      return false;
+    }
+  }
 }
-*/
+
 
 int main(){
   cout << "move1" << endl;
@@ -75,7 +108,12 @@ int main(){
   for(int i = 1; i < 11; ++i){
     cout << i << ": " << move2(i, 3) << endl;
   }
-  
+  if(play(10, 3)){
+    cout << "Player 1 wins!" << endl;
+  }
+  else{
+    cout << "Player 2 wins!" << endl;
+  }
 }
 
 //function getstonesleft() returns how many stones, function makemove() returns take how many stones
