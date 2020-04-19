@@ -156,7 +156,9 @@ board_t apply_pos_move(board_t cur_board, move_t cur_move){
   for(int i = 0; i < 8; ++i){
     apply_ray(new_board, cur_move, dir_vec[i]);
   }
-  new_board[cur_move.first][cur_move.second] = 1;
+  if(cur_move.first != -1 && cur_move.second != -1){
+    new_board[cur_move.first][cur_move.second] = 1;
+  }
   //cout << "exit apply_pos_move()" << endl;
   return new_board;
 }
