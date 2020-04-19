@@ -388,3 +388,11 @@ void play(){
 int main(){
   play();
 }
+
+
+
+
+
+/*
+using Move = pair<int, int>;
+using Board = array<array<int, 8> 8>;

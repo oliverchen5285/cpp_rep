@@ -1,0 +1,69 @@
+othello.cpp:249:50: warning: expression result unused [-Wunused-value]
+        posmoves.push(pair<pair<int, int>, int>((i, j), score(temp.second)));
+                                                 ^
+othello.cpp:249:23: error: no matching constructor for initialization of 'pair<pair<int, int>, int>'
+        posmoves.push(pair<pair<int, int>, int>((i, j), score(temp.second)));
+                      ^                         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:339:5: note: candidate constructor not viable: no known conversion from 'int' to 'const std::__1::pair<int, int>' for 1st argument
+    pair(_T1 const& __t1, _T2 const& __t2) : first(__t1), second(__t2) {}
+    ^
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:343:5: note: candidate constructor template not viable: requires single argument '__p', but 2 arguments were provided
+    pair(const pair<_U1, _U2>& __p) : first(__p.first), second(__p.second) {}
+    ^
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:316:29: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 2 were provided
+struct _LIBCPP_TEMPLATE_VIS pair
+                            ^
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:336:5: note: candidate constructor not viable: requires 0 arguments, but 2 were provided
+    pair() : first(), second() {}
+    ^
+othello.cpp:254:60: warning: expression result unused [-Wunused-value]
+    return pair<pair<int, int>, int>((posmoves.top().first.first, posmoves.top().first.second),score(posmoves.top().second));
+                                      ~~~~~~~~~~~~~~~~~~~~ ^~~~~
+othello.cpp:254:96: error: no matching function for call to 'score'
+    return pair<pair<int, int>, int>((posmoves.top().first.first, posmoves.top().first.second),score(posmoves.top().second));
+                                                                                               ^~~~~
+othello.cpp:34:5: note: candidate function not viable: no known conversion from 'const int' to 'int (*)[8]' for 1st argument
+int score(int board[8][8]){
+    ^
+othello.cpp:256:40: warning: expression result unused [-Wunused-value]
+  pair<pair<int, int>, int> bestmove ((-1, -1),0);
+                                       ^~
+othello.cpp:256:29: error: no matching constructor for initialization of 'pair<pair<int, int>, int>'
+  pair<pair<int, int>, int> bestmove ((-1, -1),0);
+                            ^         ~~~~~~~~~~
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:339:5: note: candidate constructor not viable: no known conversion from 'int' to 'const std::__1::pair<int, int>' for 1st argument
+    pair(_T1 const& __t1, _T2 const& __t2) : first(__t1), second(__t2) {}
+    ^
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:343:5: note: candidate constructor template not viable: requires single argument '__p', but 2 arguments were provided
+    pair(const pair<_U1, _U2>& __p) : first(__p.first), second(__p.second) {}
+    ^
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:316:29: note: candidate constructor (the implicit copy constructor) not viable: requires 1 argument, but 2 were provided
+struct _LIBCPP_TEMPLATE_VIS pair
+                            ^
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:336:5: note: candidate constructor not viable: requires 0 arguments, but 2 were provided
+    pair() : first(), second() {}
+    ^
+othello.cpp:284:30: error: 'board' declared as array of references of type 'int &'
+void printboard(int &board[8][8]){
+                             ^
+othello.cpp:321:11: error: array type 'int [8][8]' is not assignable
+    start = possible(move1, start).second;
+    ~~~~~ ^
+othello.cpp:330:11: error: array type 'int [8][8]' is not assignable
+    start = possible(move1, start).second;    
+    ~~~~~ ^
+In file included from othello.cpp:1:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/iostream:38:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/ios:216:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__locale:15:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/string:505:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/string_view:176:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__string:57:
+In file included from /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/algorithm:643:
+/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/utility:339:59: error: array initializer must be an initializer list
+    pair(_T1 const& __t1, _T2 const& __t2) : first(__t1), second(__t2) {}
+                                                          ^
+othello.cpp:56:12: note: in instantiation of member function 'std::__1::pair<bool, int [8][8]>::pair' requested here
+    return pair<bool, int[8][8]>(false, ansboard);
+           ^
+3 warnings and 7 errors generated.
