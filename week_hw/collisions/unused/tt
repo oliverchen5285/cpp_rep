@@ -1,0 +1,161 @@
+cd3_qt.cpp:5:8: error: unknown type name 'Rect'; did you mean 'cd3_base::Rect'?
+vector<Rect> cd3_qt::splitBound(){
+       ^~~~
+       cd3_base::Rect
+./cd3_base.h:19:10: note: 'cd3_base::Rect' declared here
+  struct Rect{
+         ^
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:4:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:37:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/ios:215:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__locale:14:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string:504:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/string_view:175:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/__string:56:
+In file included from /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/algorithm:643:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory:1514:22: error: type 'std::__1::allocator_traits<int>::allocator_type' (aka 'int') cannot be used prior to '::' because it has no members
+    typedef typename allocator_type::value_type value_type;
+                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:331:22: note: in instantiation of template class 'std::__1::allocator_traits<int>' requested here
+    typedef typename __alloc_traits::size_type       size_type;
+                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:470:15: note: in instantiation of template class 'std::__1::__vector_base<int, int>' requested here
+    : private __vector_base<_Tp, _Allocator>
+              ^
+cd3_qt.cpp:8:5: note: in instantiation of template class 'std::__1::vector<int, int>' requested here
+    {bound.x, bound.y, (bound.x + bound.x2)/2, (bound.y + bound.y2)/2},
+    ^
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:6:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:480:30: error: 'reference' is a protected member of 'std::__1::__vector_base<int, int>'
+    typedef typename __base::reference               reference;
+                             ^
+cd3_qt.cpp:8:5: note: in instantiation of template class 'std::__1::vector<int, int>' requested here
+    {bound.x, bound.y, (bound.x + bound.x2)/2, (bound.y + bound.y2)/2},
+    ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:334:54: note: declared protected here
+    typedef value_type&                              reference;
+                                                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:481:30: error: 'const_reference' is a protected member of 'std::__1::__vector_base<int, int>'
+    typedef typename __base::const_reference         const_reference;
+                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:335:54: note: declared protected here
+    typedef const value_type&                        const_reference;
+                                                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:483:30: error: 'difference_type' is a protected member of 'std::__1::__vector_base<int, int>'
+    typedef typename __base::difference_type         difference_type;
+                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:336:54: note: declared protected here
+    typedef typename __alloc_traits::difference_type difference_type;
+                                                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:484:30: error: 'pointer' is a protected member of 'std::__1::__vector_base<int, int>'
+    typedef typename __base::pointer                 pointer;
+                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:337:54: note: declared protected here
+    typedef typename __alloc_traits::pointer         pointer;
+                                                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:485:30: error: 'const_pointer' is a protected member of 'std::__1::__vector_base<int, int>'
+    typedef typename __base::const_pointer           const_pointer;
+                             ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:338:54: note: declared protected here
+    typedef typename __alloc_traits::const_pointer   const_pointer;
+                                                     ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:491:37: error: type 'std::__1::vector<int, int>::allocator_type' (aka 'int') cannot be used prior to '::' because it has no members
+    static_assert((is_same<typename allocator_type::value_type, value_type>::value),
+                                    ^
+cd3_qt.cpp:20:15: error: use of undeclared identifier 'Rect'
+vector<vector<Rect>> cd3_qt::quadRects(vector<Rect> new_bounds){
+              ^
+cd3_qt.cpp:127:2: error: expected a type
+}
+ ^
+cd3_qt.cpp:127:2: error: expected unqualified-id
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:6:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:698:47: error: no member named '__begin_' in 'std::__1::vector<int, int>'
+        {return _VSTD::__to_raw_pointer(this->__begin_);}
+                                        ~~~~  ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:872:39: note: in instantiation of member function 'std::__1::vector<int, int>::data' requested here
+      __annotate_contiguous_container(data(), data() + capacity(),
+                                      ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:551:9: note: in instantiation of member function 'std::__1::vector<int, int>::__annotate_delete' requested here
+        __annotate_delete();
+        ^
+cd3_qt.cpp:11:74: note: in instantiation of member function 'std::__1::vector<int, int>::~vector' requested here
+    {(bound.x + bound.x2)/2, (bound.y + bound.y2)/2, bound.x2, bound.y2} };
+                                                                         ^
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:6:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:659:25: error: call to non-static member function without an object argument
+        {return __base::capacity();}
+                ~~~~~~~~^~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:872:56: note: in instantiation of member function 'std::__1::vector<int, int>::capacity' requested here
+      __annotate_contiguous_container(data(), data() + capacity(),
+                                                       ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:551:9: note: in instantiation of member function 'std::__1::vector<int, int>::__annotate_delete' requested here
+        __annotate_delete();
+        ^
+cd3_qt.cpp:11:74: note: in instantiation of member function 'std::__1::vector<int, int>::~vector' requested here
+    {(bound.x + bound.x2)/2, (bound.y + bound.y2)/2, bound.x2, bound.y2} };
+                                                                         ^
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:6:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:659:25: error: 'capacity' is a protected member of 'std::__1::__vector_base<int, int>'
+        {return __base::capacity();}
+                        ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:371:15: note: declared protected here
+    size_type capacity() const _NOEXCEPT
+              ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:656:46: error: no member named '__end_' in 'std::__1::vector<int, int>'
+        {return static_cast<size_type>(this->__end_ - this->__begin_);}
+                                       ~~~~  ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:873:48: note: in instantiation of member function 'std::__1::vector<int, int>::size' requested here
+                                      data() + size(), data() + capacity());
+                                               ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:551:9: note: in instantiation of member function 'std::__1::vector<int, int>::__annotate_delete' requested here
+        __annotate_delete();
+        ^
+cd3_qt.cpp:11:74: note: in instantiation of member function 'std::__1::vector<int, int>::~vector' requested here
+    {(bound.x + bound.x2)/2, (bound.y + bound.y2)/2, bound.x2, bound.y2} };
+                                                                         ^
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:6:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:975:15: error: no member named '__throw_length_error' in 'std::__1::vector<int, int>'
+        this->__throw_length_error();
+        ~~~~  ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:1327:9: note: in instantiation of member function 'std::__1::vector<int, int>::__vallocate' requested here
+        __vallocate(__il.size());
+        ^
+cd3_qt.cpp:8:5: note: in instantiation of member function 'std::__1::vector<int, int>::vector' requested here
+    {bound.x, bound.y, (bound.x + bound.x2)/2, (bound.y + bound.y2)/2},
+    ^
+In file included from cd3_qt.cpp:1:
+In file included from ./cd3_qt.h:3:
+In file included from ./cd3_base.h:6:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:976:11: error: no member named '__begin_' in 'std::__1::vector<int, int>'
+    this->__begin_ = this->__end_ = __alloc_traits::allocate(this->__alloc(), __n);
+    ~~~~  ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:977:11: error: no member named '__end_cap' in 'std::__1::vector<int, int>'
+    this->__end_cap() = this->__begin_ + __n;
+    ~~~~  ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:997:65: error: no member named '__alloc' in 'std::__1::vector<int, int>'
+    return _VSTD::min<size_type>(__alloc_traits::max_size(this->__alloc()),
+                                                          ~~~~  ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:974:15: note: in instantiation of member function 'std::__1::vector<int, int>::max_size' requested here
+    if (__n > max_size())
+              ^
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:1327:9: note: in instantiation of member function 'std::__1::vector<int, int>::__vallocate' requested here
+        __vallocate(__il.size());
+        ^
+cd3_qt.cpp:8:5: note: in instantiation of member function 'std::__1::vector<int, int>::vector' requested here
+    {bound.x, bound.y, (bound.x + bound.x2)/2, (bound.y + bound.y2)/2},
+    ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.

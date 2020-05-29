@@ -1,8 +1,8 @@
-#include "collision_detect3_qt.h"
+#include "cd3_qt.h"
 
 
   
-vector<Rect> collision_detect3_qt::splitBound(){
+vector<Rect> cd3_qt::splitBound(){
   vector<Rect> new_bounds;
   vector<vector<int, int>> apply_div = {
     {bound.x, bound.y, (bound.x + bound.x2)/2, (bound.y + bound.y2)/2},
@@ -17,7 +17,7 @@ vector<Rect> collision_detect3_qt::splitBound(){
   return new_bounds;
 }
   
-vector<vector<Rect>> collision_detect3_qt::quadRects(vector<Rect> new_bounds){
+vector<vector<Rect>> cd3_qt::quadRects(vector<Rect> new_bounds){
   vector<vector<Rect>> quad_rect_vec;
   for(const auto &elem: new_bounds){
     vector<int> temp_vec;
@@ -30,12 +30,12 @@ vector<vector<Rect>> collision_detect3_qt::quadRects(vector<Rect> new_bounds){
   }
   return quad_rect_vec;
 }
-  
-bool collision_detect3_qt::operator< (Rect a, Rect b){
+ /*
+bool cd3_qt::operator< (Rect a, Rect b){
   return a.x < b.x;
 }
-  
-int collision_detect3_qt::search_index (Rect rect){
+*/
+int cd3_qt::search_index (Rect rect){
   for(int i = 0; i < rects.size(); ++i){
     if(rect == rects[i]){
       return i;
@@ -44,7 +44,8 @@ int collision_detect3_qt::search_index (Rect rect){
   return -1;
 }
   
-vector<pair<int, int>> collision_detect3_qt::re_index(vector<pair<int, int>> child_intersections, vector<Rect> child_rects){
+vector<pair<int, int>> cd3_qt::re_index(vector<pair<int, int>> child_intersections, vector<Rect> child_rects){
+  /*
   vector<pair<int, int>> new_index_vec;
   //asumming no duplicate rectangles
   map<Rect, int> rect_to_index; //maps child rects to parent indexes
@@ -68,13 +69,36 @@ vector<pair<int, int>> collision_detect3_qt::re_index(vector<pair<int, int>> chi
       
   }
   return new_index_vec;
+  */
+  vector<pair<int, int>> new_index_vec;
+  
+  map<int, int> child_parent;
+  for(const auto &elem: child_intersections){
+    pair<int, int> temp_intersection;
+    if(child_parent.find[elem.first]) != child_parent.end()){ //key already created
+      temp_intersection.first = child_parent[elem.first];
+    }
+    else{
+      child_parent[elem.first] = search_index(child_rects[elem.first]);
+      temp_intersection.first = child_parent[elem.first];
+    }
+    if(child_parent.find[elem.second]) != child_parent.end()){ //key already created
+      temp_intersection.second = child_parent[elem.second];
+    }
+    else{
+      child_parent[elem.second] = search_index(child_rects[elem.second]);
+      temp_intersection.second = child_parent[elem.second];
+    }
+    new_index_vec.push_back(temp_intersection);
+  }
+  return new_index_vec;
 }
-
-collision_detect3_qt::collision_detect3_qt(Rect new_bound, vector<Rect> new_rects): collision_detect3_base(new_rects){
+/*
+cd3_qt::cd3_qt(Rect new_bound, vector<Rect> new_rects): collision_detect3_base(new_rects){
     bound = new_bound;
 }
-
-vector<pair<int, int>> collision_detect3_qt::intersections(int depth){
+*/
+vector<pair<int, int>> cd3_qt::intersections(int depth){
   if(rects.size() >= 8 || depth <= 0){
     return bf_intersections();
   }

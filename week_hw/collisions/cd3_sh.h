@@ -1,6 +1,8 @@
-#include "collision_detect3_base.h"
+#ifndef __CD3_SH_H__
+#define __CD3_SH_H__
+#include "cd3_base.h"
 
-class collision_detect3_sh: public collision_detect3_base{
+class cd3_sh: public cd3_base{
 private:
   int zsize;
 
@@ -9,8 +11,9 @@ private:
   vector<pair<int, int>> zoneForRect(const Rect &rect, int zsize);
 
 public:
-  collision_detect3_sh(int zsize, vector<Rect> rects): collision_detect3_base(rects);
+  //cd3_sh(int zsize, vector<Rect> rects): cd3_base(rects){};
 
   vector<pair<int, int>> intersections();
 
 };
+#endif
