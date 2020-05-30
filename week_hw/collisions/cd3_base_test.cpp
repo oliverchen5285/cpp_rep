@@ -18,3 +18,7 @@ TEST_CASE("Test if cd3_base functions work", "[cd3_base]"){
     REQUIRE(!cd3_base_test.collide_2d(rect_test, rect_test2));
   }
 }
+
+TEST_CASE("Meh", "yeh"){
+  REQUIRE(1 == 1);
+}

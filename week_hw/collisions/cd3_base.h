@@ -30,6 +30,8 @@ public:
 
   bool collide_2d(const Rect &a, const Rect &b);
 
+  bool compare_Rect(const Rect &a, const Rect &b);
+
   vector<Rect> rects;
 
   vector<pair<int, int>> intersections_bf();

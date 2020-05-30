@@ -3,7 +3,7 @@
 #include "cd3_qt.h"
 
 int main(){
-  
+  cout << "test\n";  
   
 }
 

@@ -10,6 +10,9 @@ bool cd3_base::collide_2d(const Rect &a, const Rect &b){
   return collide_1d({a.x, a.x2}, {b.x, b.x2}) && collide_1d({a.y, a.y2},{b.y, b.y2});
 }
 
+bool cd3_base::compare_Rect(const Rect &a, const Rect &b){
+  return a.x == b.x && a.y == b.y && a.x2 == b.x2 && a.y2 == b.y2;
+}
 
 vector<pair<int, int>> cd3_base::intersections_bf(){
   vector<pair<int, int>> intersections;

@@ -1,0 +1,22 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/memory:1514:22: error: type 'std::__1::allocator_traits<int>::allocator_type' (aka 'int') cannot be used prior to '::' because it has no members
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:480:30: error: 'reference' is a protected member of 'std::__1::__vector_base<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:481:30: error: 'const_reference' is a protected member of 'std::__1::__vector_base<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:483:30: error: 'difference_type' is a protected member of 'std::__1::__vector_base<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:484:30: error: 'pointer' is a protected member of 'std::__1::__vector_base<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:485:30: error: 'const_pointer' is a protected member of 'std::__1::__vector_base<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:491:37: error: type 'std::__1::vector<int, int>::allocator_type' (aka 'int') cannot be used prior to '::' because it has no members
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:698:47: error: no member named '__begin_' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:659:25: error: call to non-static member function without an object argument
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:659:25: error: 'capacity' is a protected member of 'std::__1::__vector_base<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:656:46: error: no member named '__end_' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:975:15: error: no member named '__throw_length_error' in 'std::__1::vector<int, int>'
+        this->__throw_length_error();
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:976:11: error: no member named '__begin_' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:977:11: error: no member named '__end_cap' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:997:65: error: no member named '__alloc' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:866:39: error: 'this' argument to member function 'data' has type 'const std::__1::vector<int, int>', but function is not marked const
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:695:47: error: no member named '__begin_' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:1067:33: error: no member named '__alloc' in 'std::__1::vector<int, int>'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/vector:1243:72: error: no member named '__alloc' in 'std::__1::vector<int, int>'
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.

@@ -2,11 +2,11 @@
 #define __CD3_QT_H__
 #include "cd3_base.h"
 
-class cd3_qt: public cd3_base{
+class cd3_qt : public cd3_base{
 public:
   Rect bound;
   vector<cd3_qt> children;
-  vector<Rect> rects;
+  //vector<Rect> rects;
   
   vector<Rect> splitBound();
   
