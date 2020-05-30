@@ -6,6 +6,3 @@ compile_test:
 
 run:
 	./cd3
-
-watch:
-	fswatch -e ".*" -i "\\.cpp" -i "\\.h" -0 -o -l 10 . | xargs -0 -n1 -I{} go.sh &
