@@ -1,5 +1,6 @@
-#ifndef __CD3_BF_H__
-#define __CD3_BF_H__
+//#ifndef __CD3_BF_H__
+//#define __CD3_BF_H__
+#pragma once
 
 #include "cd3_base.h"
 
@@ -10,4 +11,4 @@ public:
 
   vector<pair<int, int>> intersections();
 };
-#endif
+//#endif

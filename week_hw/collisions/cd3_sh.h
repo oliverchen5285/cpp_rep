@@ -1,5 +1,7 @@
-#ifndef __CD3_SH_H__
-#define __CD3_SH_H__
+//#ifndef __CD3_SH_H__
+//#define __CD3_SH_H__
+#pragma once
+
 #include "cd3_base.h"
 
 class cd3_sh: public cd3_base{
@@ -15,4 +17,4 @@ public:
   vector<pair<int, int>> intersections();
 
 };
-#endif
+//#endif

@@ -1,5 +1,7 @@
-#ifndef __CD3_QT_H__
-#define __CD3_QT_H__
+//#ifndef __CD3_QT_H__
+//#define __CD3_QT_H__
+#pragma once
+
 #include "cd3_base.h"
 
 class cd3_qt : public cd3_base{
@@ -22,4 +24,4 @@ public:
   
   vector<pair<int, int>> intersections(int depth);
 };
-#endif
+//#endif

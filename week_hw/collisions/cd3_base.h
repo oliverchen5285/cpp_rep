@@ -1,5 +1,6 @@
-#ifndef __CD3_BASE_H__
-#define __CD3_BASE_H__
+//#ifndef __CD3_BASE_H__
+//#define __CD3_BASE_H__
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -40,5 +41,5 @@ private:
   
 };
 
-#endif
+//#endif
 
