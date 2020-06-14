@@ -1,6 +1,6 @@
 #include "cd3_qt.h"
 
-  
+//helper function to split bound into quadtree  
 vector<cd3_base::Rect> cd3_qt::splitBound(){
   vector<Rect> new_bounds;
   vector<vector<int>> apply_div = {
@@ -15,7 +15,8 @@ vector<cd3_base::Rect> cd3_qt::splitBound(){
   }
   return new_bounds;
 }
-  
+
+//helper function to place Rects into each quad
 vector<vector<cd3_base::Rect>> cd3_qt::quadRects(vector<Rect> new_bounds){
   vector<vector<Rect>> quad_rect_vec;
   for(const auto &elem: new_bounds){
@@ -29,11 +30,8 @@ vector<vector<cd3_base::Rect>> cd3_qt::quadRects(vector<Rect> new_bounds){
   }
   return quad_rect_vec;
 }
- /*
-bool cd3_qt::operator< (Rect a, Rect b){
-  return a.x < b.x;
-}
-*/
+
+//helper function to return index of Rect
 int cd3_qt::search_index (Rect rect){
   for(int i = 0; i < rects.size(); ++i){
     if(compare_Rect(rect,rects[i])){
@@ -42,33 +40,9 @@ int cd3_qt::search_index (Rect rect){
   }
   return -1;
 }
-  
+
+//helper function to re-index Rects from child_intersections to rects
 vector<pair<int, int>> cd3_qt::re_index(vector<pair<int, int>> child_intersections, vector<Rect> child_rects){
-  /*
-  vector<pair<int, int>> new_index_vec;
-  //asumming no duplicate rectangles
-  map<Rect, int> rect_to_index; //maps child rects to parent indexes
-  for(const auto &elem: child_intersections){
-    pair<int, int> temp_intersection;
-    if(rect_to_index.find(child_rects[elem.first]) != rect_to_index.end()){ //if key already created
-      temp_intersection.first == rect_to_index[child_rects[elem.first]];
-    }
-    else{
-      rect_to_index[child_rects[elem.first]] == search_index(child_rects[elem.first]);
-      temp_intersection.first == rect_to_index[child_rects[elem.first]];
-    }
-    if(rect_to_index.find(child_rects[elem.second]) != rect_to_index.end()){ //if key already created
-      temp_intersection.second == rect_to_index[child_rects[elem.second]];
-    }
-    else{
-      rect_to_index[child_rects[elem.second]] == search_index(child_rects[elem.second]);
-      temp_intersection.second == rect_to_index[child_rects[elem.second]];
-    }
-    new_index_vec.push_back(temp_intersection);
-      
-  }
-  return new_index_vec;
-  */
   vector<pair<int, int>> new_index_vec;
   
   map<int, int> child_parent;
@@ -92,11 +66,8 @@ vector<pair<int, int>> cd3_qt::re_index(vector<pair<int, int>> child_intersectio
   }
   return new_index_vec;
 }
-/*
-cd3_qt::cd3_qt(Rect new_bound, vector<Rect> new_rects): collision_detect3_base(new_rects){
-    bound = new_bound;
-}
-*/
+
+//returns vector of Rect intersections by recursively creating quadtrees
 vector<pair<int, int>> cd3_qt::intersections(int depth){
   if(rects.size() >= 8 || depth <= 0){
     return intersections_bf();

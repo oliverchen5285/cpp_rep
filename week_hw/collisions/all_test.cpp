@@ -4,6 +4,7 @@
 #include "cd3_sh.h"
 #include "cd3_qt.h"
 
+//testing base functions
 TEST_CASE("Test base functions", "[cd3_base]"){
   cd3_base cd3_base_test;
   SECTION("collide_1d"){
@@ -22,6 +23,7 @@ TEST_CASE("Test base functions", "[cd3_base]"){
   }
 }
 
+//testing intersection functions
 TEST_CASE("Test all intersections", "[intersections]"){
   SECTION("base"){
     cd3_base cd3_base_test;

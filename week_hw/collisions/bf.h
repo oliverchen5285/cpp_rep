@@ -1,14 +1,9 @@
-//#ifndef __CD3_BF_H__
-//#define __CD3_BF_H__
 #pragma once
-
 #include "cd3_base.h"
 
+//derived bf class from base class
 class cd3_bf: public cd3_base{
-private:
 public:
-  //cd3_bf(vector<Rect> new_rects): cd3_base(new_rects);
-
-  vector<pair<int, int>> intersections();
+  vector<pair<int, int>> intersections(); //returns vector of Rect intersections
 };
 //#endif

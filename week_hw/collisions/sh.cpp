@@ -1,9 +1,11 @@
 #include "cd3_sh.h"
 
+//helper function to calculate zone for point
 pair<int, int> cd3_sh::zoneForPoint(const pair<int, int> &pt, const int &zsize){
   return {pt.first / zsize, pt.second / zsize};
 }
 
+//helper function to calculate zone(s) for Rect
 vector<pair<int, int>> cd3_sh::zoneForRect(const Rect &rect, int zsize){
   vector<pair<int, int>> zones;
 
@@ -18,8 +20,7 @@ vector<pair<int, int>> cd3_sh::zoneForRect(const Rect &rect, int zsize){
   return zones;
 }
 
-//cd3_sh(int new_zsize, vector<Rect> new_rects): collision_detect3_base(new_rects), zsize(new_zsize);
-
+//returns vector of Rect intersections using spacial hash
 vector<pair<int, int>> cd3_sh::intersections(){
   map<pair<int, int>, vector<int>> buckets;
      

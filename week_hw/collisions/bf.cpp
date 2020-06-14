@@ -1,9 +1,6 @@
 #include "cd3_bf.h"
-/*
-cd3_bf::cd3_bf(vector<Rect> new_rects): cd3_base(new_rects){
-  
-}
-*/
+
+//returns Rect intersections using intersections_bf() in base class
 vector<pair<int, int>> cd3_bf::intersections(){
   return intersections_bf();
 }
