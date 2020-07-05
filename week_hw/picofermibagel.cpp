@@ -454,13 +454,13 @@ public:
         
         init_pos_guesses();
         
-        
+        /*
         cout << "pos_guesses: " << endl;
         for(const auto &elem: pos_guesses){
             cout << elem << endl;
         }
         cout << endl;
-         
+        */
     }
     
     string get_guess() override { //random guesses with potential repeats (I'm guessing a better implementation for the guessing function would be to not guess a RANDOM one...)
@@ -781,7 +781,7 @@ bool compare_guesses2(string ans_guess, string fut_guess, string last_guess){
 
 int main(){
     cout << compare_guesses2("8x0", "850", "840") << endl;
-    cout << "oh yeah6" << endl;
+    //cout << "oh yeah6" << endl;
     
     
     int digits;
@@ -794,6 +794,9 @@ int main(){
     unique_ptr<Player> player;
     if (player_type == "random") {
         player.reset(new PlayerAiRandom(digits));
+    }
+    else if(player_type == "random2"){
+        player.reset(new PlayerAiRandom2(digits));
     }
     else if(player_type == "elim"){
         player.reset(new PlayerAiEliminate(digits));
