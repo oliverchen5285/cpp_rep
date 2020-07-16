@@ -9,6 +9,10 @@
 #include <set>
 using namespace std;
 
+bool print_pos_guesses = false;
+bool print_dif = true;
+bool print_pos_clues = true;
+
 string genNum(const int digits){ //no repeating digits
   string ans = "";
   vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -167,7 +171,7 @@ class Player { //base class
 public:
     virtual ~Player(){}
     virtual string get_guess() = 0;
-    virtual void give_clue(pair<int,int> clue) = 0;
+    virtual void give_clue(pair<int,int> new_clue) = 0;
 };
 
 // int game(int digits, Player *player)
@@ -186,6 +190,7 @@ int game(int digits, Player *player){ //REWRITE GAME
         player->give_clue(picofermi);
         turns += 1;
     }
+    cout << "the secret number was " << num << endl;
     cout << "turns: " << turns << endl;
     return turns;
 }
@@ -606,8 +611,120 @@ public:
     }
 };
 
+class PlayerAiEliminate2: public Player{
+private:
+    int digits;
+    vector<string> pos_guesses;
+    string guess;
+    vector<pair<int, int>> pos_clues;
 
+    void init_pos_guesses(int depth, string cur = "", vector<int> remaining_digits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}){ //I can't use digits as a default argument value :( something about not being able to use non-static stuff
+        if(depth == 0){
+            pos_guesses.push_back(cur);
+            return;
+        }
+        for(int i = 0; i < remaining_digits.size(); ++i){
+            vector<int> temp_remaining_digits = remaining_digits;
+            temp_remaining_digits.erase(temp_remaining_digits.begin() + i);
+            init_pos_guesses(depth - 1, cur + to_string(remaining_digits[i]), temp_remaining_digits);
+        }
+    }
 
+    void init_pos_clues(){
+        for(int i = 0; i <= digits; ++i){ // every possible sum of picos and fermis
+            for(int j = 0; j <= i; ++j){ //every possible value of pico
+                int pico_val = j;
+                int fermi_val = i - j;
+                if(pico_val != 1 && fermi_val != digits - 1){ //you can't have 1 pico and rest fermis...
+                    pos_clues.push_back({pico_val, fermi_val});
+                }
+            }
+        }
+    }
+
+    int guess_score(string cur_guess, pair<int, int> cur_clue){ //the higher the better
+        int score = 0;
+        for(const auto &elem: pos_guesses){
+            if(cur_clue != clue(cur_guess, elem)){
+                ++score;
+            }
+        }
+        return score;
+    }
+    
+public:
+    ~PlayerAiEliminate2() override{}
+    
+    PlayerAiEliminate2(int new_digits){
+        digits = new_digits;
+        
+        //initialize pos_guesses
+        init_pos_guesses(digits);
+        if(print_pos_guesses){ //debug
+            cout << pos_guesses.size() << endl;
+            for(const auto &elem: pos_guesses){
+                cout << elem << endl;
+            }
+            cout << endl;
+        }
+
+        //initialize pos_clues
+        init_pos_clues();
+        if(print_pos_clues){
+            cout << pos_clues.size() << endl;
+            for(const auto &elem: pos_clues){
+                cout << elem.first << ", " << elem.second << endl;
+            }
+            cout << endl;
+        }
+        
+    }
+    
+    string get_guess_rand() {
+        int index = rand() % pos_guesses.size();
+
+        guess = pos_guesses[index];
+        pos_guesses.erase(pos_guesses.begin() + index);
+
+        return guess;
+    }
+
+    string get_guess() override { //find best guess
+        //is it possible to take into account probability of each clue? (like all fermi would be least likely)
+
+        int index = 0;
+        int best_score = 0;
+
+        
+
+        for(int i = 0; i < pos_guesses.size(); ++i){
+            int avg_score = 0;
+            for(const auto &elem: pos_clues){
+                avg_score += guess_score(pos_guesses[i], elem);
+            }
+            if(avg_score > best_score){
+                index = i;
+                best_score = avg_score;
+            }
+        }
+
+        guess = pos_guesses[index];
+        pos_guesses.erase(pos_guesses.begin() + index);
+
+        return guess;
+    }
+    void give_clue(pair<int, int> new_clue) override{
+        int prev_size = pos_guesses.size();
+        for(int i = 0; i < pos_guesses.size(); ++i){
+            if(new_clue != clue(pos_guesses[i], guess)){
+                pos_guesses.erase(pos_guesses.begin() + i);
+            }
+        }
+        if(print_dif){
+            cout << "difference: " << prev_size - pos_guesses.size() << endl;
+        }
+    }
+};
 class Comp2_c{
 private:
     int digits;
@@ -799,7 +916,7 @@ int main(){
         player.reset(new PlayerAiRandom2(digits));
     }
     else if(player_type == "elim"){
-        player.reset(new PlayerAiEliminate(digits));
+        player.reset(new PlayerAiEliminate2(digits));
     }
     else {
         player.reset(new RealPlayer());
