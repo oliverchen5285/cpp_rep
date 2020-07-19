@@ -1,3 +1,4 @@
+// compile with -Wall -Wpedantic -Werror
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,7 +17,7 @@ int seq(long cur, int depth){
   
   int ans;
   if(cur % 2 == 0){
-    if(memo.find(cur % 2) == memo.end()){
+    if(memo.find(cur / 2) == memo.end()){
       memo[cur/2] = seq(cur/2, 1);
     }
     depth += memo[cur/2];
