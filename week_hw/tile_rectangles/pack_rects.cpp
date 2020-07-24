@@ -22,14 +22,15 @@ bool des_area(const Rect r1, const Rect r2){
   return r1.width * r1.height > r2.width * r2.height;
 }
 
-class Tile_bf{
+class Tile_bf{ //Instead of bool matrix representing used area, iterate through valid corners to place new rectangle (new rectangle upper left corner always pressed against other corner)
 private:
   vector<Rect> rect_vec;
 
   int width_bound;
   int height_bound;
 
-  vector<vector<bool>> grid; //I don't know how else to store where rectangles are
+  //vector<vector<bool>> grid; //I don't know how else to store where rectangles are
+  vector<Rect> used_rects = {{0, 0, {0, 0}}}; //initialize with corner first
 
   int sqr_side;
   /*
@@ -37,6 +38,9 @@ private:
     return r1.width * r1.height > r2.width * r2.height;
   }
   */
+  vector<pair<int, int>> pos_corners(const Rect r){
+    return {{r.pos.first + r.width, r.pos.second}, {r.pos.first, r.pos.second + r.height}}; //include opposite corner? (first + width, second + height)
+  }
 public:
   Tile_bf(const vector<Rect> new_rect_vec){
     rect_vec = new_rect_vec;
@@ -49,9 +53,9 @@ public:
     }
 
     cout << "done with initializing width_bound, height_bound" << endl;
-    grid = vector<vector<bool>>(width_bound, vector<bool>(height_bound, false));
+    //grid = vector<vector<bool>>(width_bound, vector<bool>(height_bound, false));
 
-    cout << "done with initializing grid" << endl;
+    //cout << "done with initializing grid" << endl;
     
     sqr_side = 0;
   }
@@ -65,7 +69,8 @@ public:
       cout << elem.width << ", " << elem.height << endl;
       int cur_sqr_side = -1;
       pair<int, int> best_pos = {-1, -1};
-      bool break_both = false;
+      //bool break_both = false;
+      /*
       for(int i = 0; i < sqr_side + 1; ++i){ //i and j iterate through possible locations to put rectangle
         for(int j = 0; j < sqr_side + 1; ++j){
           bool valid = true;
@@ -97,15 +102,40 @@ public:
           break;
         }
       }
+      */
+      for(auto &cur_used_rect: used_rects){ //loop through rectangles again
+        for(const auto &corner: pos_corners(cur_used_rect)){ //loop through 2 corners
+          bool valid = true;
+          for(const auto &other_used_rect: used_rects){ //loop through used rectangles again
+            if(collide_2d({elem.width, elem.height, corner}, other_used_rect)){
+              valid = false;
+              break;
+            }
+          }
+          if(valid){
+            //cout << "VALID VALID VALID VALID VALID" << endl;
+            int temp_sqr_side = max(corner.first + elem.width, corner.second + elem.height);
+            if(cur_sqr_side == -1 || temp_sqr_side < cur_sqr_side){
+              //cout << "NEW BEST NEW BEST NEW BEST" << endl;
+              cur_sqr_side = temp_sqr_side;
+              best_pos = corner;
+            }
+          }
+        }
+      }
       elem.pos = best_pos;
+      /*
       for(int i = elem.pos.first; i < elem.pos.first + elem.width; ++i){
         for(int j = elem.pos.second; j < elem.pos.second + elem.height; ++j){
           grid[i][j] = true;
         }
       }
-      sqr_side = cur_sqr_side;
+      */
+      used_rects.push_back(elem);
+      sqr_side = max(cur_sqr_side, sqr_side);
       cout << "     " << elem.pos.first << ", " << elem.pos.second << endl;
       cout << "     " << "sqr_side: " << sqr_side << endl;
+      /*
       cout << "     " << "grid: " << endl;
       for(int i = 0; i < 400; ++i){
         cout << "     ";
@@ -115,6 +145,7 @@ public:
         cout << endl;
       }
       cout << endl;
+      */
     }
     return {sqr_side, rect_vec};
   }
@@ -126,7 +157,7 @@ class Tile_grav{
 };
 */
 int main(){
-  ifstream fin("rect_cases.txt");
+  ifstream fin("rect_cases.txt"); //to be honest I should have just made classes to check stuff in the same file -- actually I'll just do that
   ofstream fout("rect_w_pos.txt");
 
   int cases;
