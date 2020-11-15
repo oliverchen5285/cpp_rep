@@ -11,12 +11,18 @@ private:
         if(a.x != b.x){
             return a.x < b.x;
         }
+        if(a.start && b.start){
+            return a.h > b.h;
+        }
+        if(!a.start && !b.start){
+            return a.h < b.h;
+        }
         return a.h > b.h;
     }
 public:
 
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings){
-        cout << "entered" << endl;
+
         if(buildings.size() == 0){
             return {};
         }
@@ -31,7 +37,7 @@ public:
         heights.insert({0, -1});
         vector<bool> inside(buildings.size(), false);
         vector<vector<int>> ans;
-        cout << "reached 1 " << endl;
+
         for(const auto &elem: edges){
             //add first height to ans
             if(elem.start){ //new building
@@ -41,25 +47,30 @@ public:
             else{ //end of building
                 inside[elem.index] = false;
             }
-            cout << "reached 2" << endl;
+
             //iterate through set until find height where inside[index] is true (delete false as you go) ({0, -1} is exception)
             for(auto itr = heights.begin(); itr != heights.end(); ++itr){
                 pair<int, int> height = *itr;
-                cout << "debug: " << endl;
-                cout << height.first << ", " << height.second << endl;
+
+                //cout << height.first << ", " << height.second << endl;
                 if(height == make_pair(0, -1) || inside[height.second]){
-                    cout << "found" << endl;
+ 
                     ans.push_back({elem.x, height.first});
                     break;
                 }
                 else{
-                    cout << "erased" << endl;
+
                     heights.erase(itr);
                 }
             }
-            cout << "reached 3" << endl;
+
         }
-        cout << "reached" << endl;
+        for(const auto &elem: ans){
+            for(const auto &elem2: elem){
+                cout << elem2 << " ";
+            }
+            cout << endl;
+        }
         for(int i = 0; i < ans.size()-1; ++i){
             if(ans[i][0] == ans[i+1][0]){ //x values same
                 if(ans[i][1] > ans[i+1][1]){
